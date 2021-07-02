@@ -1,2 +1,2 @@
 S_FILES = \
-	ft_strlen.s 
+	ft_strcmp.s 

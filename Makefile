@@ -41,7 +41,7 @@ $(OBJ_DIR): mkdir_msg
 ### Compilation ###
 .ONESHELL:
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.s $(INC) Makefile | compil_msg
-	@echo "$(RCURSOR)$(ERASEL)$(@F) \c"
+	@echo "$(ERASEL)$(@F) \c"
 	@$(CC) $(CFLAGS) -o $@ $<
 
 ### Link ###
@@ -64,7 +64,7 @@ re: fclean all
 
 .ONESHELL:
 $(TEST): $(NAME)
-	gcc $(SRC_DIR)/main.c $(NAME) -I $(INC_DIR) -o $(TEST)
+	gcc $(SRC_DIR)/main_test_ft_strcmp.c $(NAME) -I $(INC_DIR) -o $(TEST)
 
 ### INCLUDE TOOLS MAKEFILE ###
 include ./tools.mk
