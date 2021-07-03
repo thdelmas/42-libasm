@@ -1,12 +1,8 @@
 		global		ft_strcmp
-
 		section		.text
 
-_end_of_loop:
-		
-		sub	r8, r9
-		mov	rax, r8
-		ret
+ft_strcmp:
+		xor	rdx, rdx
 
 _loop:
 		mov	r8, [rdi+rdx]
@@ -16,6 +12,7 @@ _loop:
 		inc	rdx
 		jmp	_loop
 
-ft_strcmp:
-		xor	rdx, rdx
-		jmp	_loop
+_end_of_loop:
+		sub	r8, r9
+		mov	rax, r8
+		ret

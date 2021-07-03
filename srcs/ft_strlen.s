@@ -1,21 +1,13 @@
-%ifdef __LINUX__
-	%define STRLEN ft_strlen
-%else
-	%define STRLEN _ft_strlen
-%endif
-
+          	global		ft_strlen
 		section		.text
-          	global		STRLEN
+ft_strlen:
+		xor	rax, rax
 
-_strlen42:	
+_loop:	
 		cmp	BYTE [rdi+rax], 0
 		je	_end_of_string
 		inc	rax
-		jmp	_strlen42
+		jmp	_loop
 
 _end_of_string:
 		ret
-
-STRLEN:
-		xor	rax, rax
-		jmp	_strlen42

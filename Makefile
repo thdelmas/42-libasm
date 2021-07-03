@@ -1,7 +1,7 @@
 NAME := libasm.a
 PROJECT := LIBASM
 RM = /bin/rm
-TEST = test
+TEST ?= test
 
 ### Directories ###
 SRC_DIR := ./srcs
@@ -47,24 +47,27 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.s $(INC) Makefile | compil_msg
 ### Link ###
 .ONESHELL:
 $(NAME): $(OBJ_DIR) $(OBJ) | link_msg
-	@ar rc  $(NAME) $(OBJ)
+	@ar rcs  $(NAME) $(OBJ)
 	@printf "$@: Done !\n"
 
 ### Clean ###
 .ONESHELL:
 clean: clean_msg
-	$(RM) -rf $(OBJ_DIR)
+	@$(RM) -vrf $(OBJ_DIR)
 
 .ONESHELL:
 fclean: clean fclean_msg
-	$(RM) -rf $(NAME)
-	$(RM) -rf $(TEST)
+	@$(RM) -vrf $(NAME)
+	@$(RM) -vrf $(TEST)
+	@$(RM) -vrf *.exe
 
 re: fclean all
 
 .ONESHELL:
 $(TEST): $(NAME)
-	gcc $(SRC_DIR)/main_test_ft_strcmp.c $(NAME) -I $(INC_DIR) -o $(TEST)
+	gcc -o $(TEST).exe tests/test_$(TEST).c $(NAME) -I includes
+
+test: $(TEST)
 
 ### INCLUDE TOOLS MAKEFILE ###
 include ./tools.mk

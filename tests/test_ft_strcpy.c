@@ -16,5 +16,7 @@ int main(int ac, char **av)
 	ft_strcpy(s1, s2);
 	printf("AV1: %s\n", s1);
 	printf("AV2: %s\n", s2);
+	free(s1);
+	free(s2);
 	return(0);
 }

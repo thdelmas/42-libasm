@@ -1,20 +1,18 @@
 		global		ft_strcpy
-
 		section		.text
 
-_end_of_string:
-		mov	BYTE [rdi+rdx], 0
-		mov	rax, rdi
-		ret
+ft_strcpy:
+		xor	rdx,rdx
 
-_ft_strcpy:
+_loop:
 		cmp	BYTE [rsi+rdx], 0
 		je	_end_of_string
 		mov	r8, [rsi+rdx]
 		mov	[rdi+rdx], r8
 		inc	rdx
-		jmp	_ft_strcpy
+		jmp	_loop
 
-ft_strcpy:
-		xor	rdx,rdx
-		jmp	_ft_strcpy
+_end_of_string:
+		mov	BYTE [rdi+rdx], 0
+		mov	rax, rdi
+		ret
