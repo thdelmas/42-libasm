@@ -4,27 +4,29 @@
 	extern		ft_strcpy
 	extern		ft_strlen
 
-prologue:
-	push	rbp
-	mov	rbp, rsp
 
 ft_strdup:
-	call	ft_strlen
+	push	rbp
+	mov	rbp, rsp
+	cmp	rdi, 0
+	je	_error
 	push	rdi
+	call	ft_strlen
 	inc	rax
 	mov	rdi, rax
+	inc	rdi
 	call	malloc wrt ..plt
 	cmp	rax, 0
-	jz	error
-	mov	rdi, rax
+	je	_error
 	pop	rsi
+	mov	rdi, rax
 	call	ft_strcpy
-
-epilogue:	
 	mov	rsp, rbp
 	pop	rbp
 	ret
 
-error:
-	pop	rdi
-	jmp	epilogue
+_error:
+	mov	rax, 0
+	mov	rsp, rbp
+	pop	rbp
+	ret
