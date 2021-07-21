@@ -11,12 +11,15 @@ int main(int ac, char **av)
 
 	src = strdup("111111111111111111");
 	dest = strdup("000000000000000000000000000000000000000000000000");
+	dest = NULL;
 	printf("SRC:\t%s\n", src);
 	printf("DEST:\t%s\n", dest);
 	ft_strcpy(dest, src);
 	printf("SRC:\t%s\n", src);
 	printf("DEST:\t%s\n", dest);
-	free(src);
-	free(dest);
+	if (src)
+		free(src);
+	if (dest)
+		free(dest);
 	return(0);
 }
