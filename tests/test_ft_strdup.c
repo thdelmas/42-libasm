@@ -8,6 +8,7 @@ int main(int ac, char **av)
 {
 	char	*s2;
 
+	s2 = NULL;
 	if (ac > 1)
 	{
 		printf("AV1: %s\n", av[1]);
